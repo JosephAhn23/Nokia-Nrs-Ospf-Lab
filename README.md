@@ -1,4 +1,7 @@
 # Nokia NRS Certification Lab
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Docker](https://img.shields.io/badge/docker-required-blue.svg)](https://www.docker.com/)
 
 **Real OSPF/ISIS Protocol Lab Using FRRouting & Docker**
 
@@ -111,4 +114,3 @@ docs/sros_config_examples/   # Nokia SR-OS configuration examples
 
 ---
 
-**Built for Nokia NRS-1/NRS-2 certification. Demonstrates real networking skills, not theory.**
