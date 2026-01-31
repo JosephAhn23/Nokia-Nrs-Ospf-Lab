@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  router1:
+    build: .
+    container_name: router1
+    hostname: router1
+    environment:
+      - ROUTER_ID=1.1.1.1
+      - NETWORK_TYPE=ospf
+    networks:
+      ospf_net:
+        ipv4_address: 172.20.0.10
+    volumes:
+      - ../:/app
+    working_dir: /app
+    command: python -c "from ospf_network import OSPFNetwork; import time; net = OSPFNetwork(); r1 = net.add_router('1.1.1.1'); r1.add_interface('eth0', '172.20.0.10'); r1.start(); print('Router 1.1.1.1 running'); time.sleep(3600)"
+
+  router2:
+    build: .
+    container_name: router2
+    hostname: router2
+    environment:
+      - ROUTER_ID=2.2.2.2
+      - NETWORK_TYPE=ospf
+    networks:
+      ospf_net:
+        ipv4_address: 172.20.0.20
+    volumes:
+      - ../:/app
+    working_dir: /app
+    command: python -c "from ospf_network import OSPFNetwork; import time; net = OSPFNetwork(); r2 = net.add_router('2.2.2.2'); r2.add_interface('eth0', '172.20.0.20'); r2.start(); print('Router 2.2.2.2 running'); time.sleep(3600)"
+
+  router3:
+    build: .
+    container_name: router3
+    hostname: router3
+    environment:
+      - ROUTER_ID=3.3.3.3
+      - NETWORK_TYPE=ospf
+    networks:
+      ospf_net:
+        ipv4_address: 172.20.0.30
+    volumes:
+      - ../:/app
+    working_dir: /app
+    command: python -c "from ospf_network import OSPFNetwork; import time; net = OSPFNetwork(); r3 = net.add_router('3.3.3.3'); r3.add_interface('eth0', '172.20.0.30'); r3.start(); print('Router 3.3.3.3 running'); time.sleep(3600)"
+
+networks:
+  ospf_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24

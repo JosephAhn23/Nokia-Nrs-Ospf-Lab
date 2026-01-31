@@ -1,0 +1,73 @@
+{
+  "routers": [
+    {
+      "id": "1.1.1.1",
+      "ospf": {
+        "areas": ["0.0.0.0", "0.0.0.1"],
+        "authentication": {
+          "enabled": false
+        },
+        "nsr": {
+          "enabled": true
+        },
+        "graceful_restart": {
+          "enabled": false
+        },
+        "route_summarization": {
+          "summaries": [
+            {
+              "prefix": "10.0.0.0/8",
+              "area": "0.0.0.2"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "2.2.2.2",
+      "ospf": {
+        "areas": ["0.0.0.0"],
+        "authentication": {
+          "enabled": true,
+          "type": "md5",
+          "keys": [
+            {
+              "id": 1,
+              "value": "password123"
+            }
+          ],
+          "key_rotation": {
+            "enabled": false
+          }
+        },
+        "nsr": {
+          "enabled": true
+        },
+        "graceful_restart": {
+          "enabled": true,
+          "helper_mode": {
+            "disabled": true
+          },
+          "grace_period_seconds": 30
+        }
+      }
+    },
+    {
+      "id": "3.3.3.3",
+      "ospf": {
+        "areas": ["0.0.0.1"],
+        "authentication": {
+          "enabled": true,
+          "type": "sha-256",
+          "key_rotation": {
+            "enabled": true,
+            "interval_days": 180
+          },
+          "key_distribution": "manual",
+          "grace_period_seconds": 0
+        }
+      }
+    }
+  ]
+}
+

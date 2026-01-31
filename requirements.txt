@@ -1,0 +1,2 @@
+# OSPF Simulator Requirements
+# Minimal dependencies - focus on working implementation

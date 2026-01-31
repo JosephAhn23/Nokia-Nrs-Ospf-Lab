@@ -1,0 +1,45 @@
+{
+  "routers": [
+    {
+      "id": "1.1.1.1",
+      "areas": ["0.0.0.0", "0.0.0.1"],
+      "nsr": true,
+      "graceful_restart": true,
+      "gr_helper_disable": false
+    },
+    {
+      "id": "2.2.2.2",
+      "areas": ["0.0.0.0"],
+      "nsr": true,
+      "graceful_restart": true,
+      "gr_helper_disable": false
+    },
+    {
+      "id": "3.3.3.3",
+      "areas": ["0.0.0.0", "0.0.0.1"],
+      "nsr": false,
+      "graceful_restart": false
+    }
+  ],
+  "links": [
+    {
+      "from": "1.1.1.1",
+      "to": "2.2.2.2",
+      "area": "0.0.0.0",
+      "interface": "ethernet-1/1"
+    },
+    {
+      "from": "2.2.2.2",
+      "to": "3.3.3.3",
+      "area": "0.0.0.0",
+      "interface": "ethernet-1/2"
+    },
+    {
+      "from": "1.1.1.1",
+      "to": "3.3.3.3",
+      "area": "0.0.0.1",
+      "interface": "ethernet-1/2"
+    }
+  ]
+}
+

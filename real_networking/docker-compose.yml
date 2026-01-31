@@ -1,0 +1,67 @@
+version: '3.8'
+services:
+  router1:
+    image: frrouting/frr:latest
+    container_name: frr-router1
+    hostname: router1
+    privileged: true
+    stdin_open: true
+    tty: true
+    networks:
+      net1:
+        ipv4_address: 10.0.12.1
+      net2:
+        ipv4_address: 10.0.13.1
+      net3:
+        ipv4_address: 10.0.14.1
+
+  router2:
+    image: frrouting/frr:latest
+    container_name: frr-router2
+    hostname: router2
+    privileged: true
+    stdin_open: true
+    tty: true
+    networks:
+      net1:
+        ipv4_address: 10.0.12.2
+
+  router3:
+    image: frrouting/frr:latest
+    container_name: frr-router3
+    hostname: router3
+    privileged: true
+    stdin_open: true
+    tty: true
+    networks:
+      net2:
+        ipv4_address: 10.0.13.3
+
+  router4:
+    image: frrouting/frr:latest
+    container_name: frr-router4
+    hostname: router4
+    privileged: true
+    stdin_open: true
+    tty: true
+    networks:
+      net3:
+        ipv4_address: 10.0.14.4
+
+networks:
+  net1:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.0.12.0/24
+  net2:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.0.13.0/24
+  net3:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.0.14.0/24
+
